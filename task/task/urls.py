@@ -14,18 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import sys
+
 sys.path.append("..")
 
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include, re_path
+from django.conf.urls import url
 from taskapp import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 # router.register(r'ping/', views.ping_view, basename="ping")
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('ping/', views.ping_view)
+    path('ping/', views.ping_view),
+    # url(r'^(?P<url>[\w-]+)/$', views.first)
+    path('', views.first)
+    # re_path(r'^(?P<url>\w+)', views.first)
 ]
