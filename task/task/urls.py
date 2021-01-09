@@ -18,20 +18,15 @@ import sys
 sys.path.append("..")
 
 from django.contrib import admin
-from django.urls import path, include, re_path
-from django.conf.urls import url
+from django.urls import path
 from taskapp import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-# router.register(r'ping/', views.ping_view, basename="ping")
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
     path('ping/', views.ping_view),
-    # url(r'^(?P<url>[\w-]+)/$', views.first)
     path('', views.first)
-    # re_path(r'^(?P<url>\w+)', views.first)
 ]
